@@ -1,0 +1,11 @@
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\InstitutoIEFI.exe.config
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\InstitutoIEFI.exe
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\InstitutoIEFI.pdb
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.AssemblyReference.cache
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.SuggestedBindingRedirects.cache
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.Form1.resources
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.Properties.Resources.resources
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.GenerateResource.cache
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.CoreCompileInputs.cache
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.exe
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.pdb
