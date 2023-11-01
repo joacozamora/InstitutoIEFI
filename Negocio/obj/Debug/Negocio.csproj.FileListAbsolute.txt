@@ -9,3 +9,14 @@ C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\bin\Debug\Entida
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\obj\Debug\Negocio.dll
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\obj\Debug\Negocio.pdb
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\bin\Debug\Negocio.dll
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\bin\Debug\Datos.dll
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\bin\Debug\Entidades.dll
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\bin\Debug\Datos.pdb
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\bin\Debug\Entidades.pdb
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\obj\Debug\Negocio.dll
+C:\Users\Lucas\Desktop\IEFIProg\Negocio\obj\Debug\Negocio.pdb

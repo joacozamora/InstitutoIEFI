@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
@@ -85,6 +87,8 @@ namespace InstitutoIEFI
 
 		private void btn_CargarMateria_Click(object sender, EventArgs e)
 		{
+
+
 			bool validar = ValidacionCamposMateria();
 			int nGrabados = -1;
 			if (validar == true)
@@ -205,11 +209,44 @@ namespace InstitutoIEFI
 			//txtBuscarCaja.Clear();
 			//txtEliminarCaja.Clear();
 		}
-		#endregion
+        #endregion
 
-		#region Validaciones
+        #region Validaciones
+        private void txb_NomApAlumno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //evitar que escriba numeros
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            //evitar que escriba muchos letras
+            if (txb_NomApAlumno.Text.Length >= 30)
+            {
+                e.Handled = true;
+            }
+        }
+        private void txb_dni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                // No bloquear teclas de control
+                e.Handled = false;
+                return;
+            }
+            //comprobar que solo escriba numeros
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; return;
+            }
 
-		public bool ValidacionCamposAlumno()
+            //evitar que escriba mas de 10 numeros
+            if (txb_dni.Text.Length >= 9)
+            {
+                e.Handled = true;
+            }
+        }
+
+        public bool ValidacionCamposAlumno()
 		{
 
 			// Nombre
@@ -225,27 +262,28 @@ namespace InstitutoIEFI
 			}
 
 
-
 			//DNI Alumno
 			if (txb_dni.Text == string.Empty)
 			{
 				MessageBox.Show("Ingrese un DNI valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
 			}
-			else if (txb_dni.Text.Length > 50 || txb_dni.Text.Length < 2)
+			else if (txb_dni.Text.Length > 8 || txb_dni.Text.Length < 7)
 			{
 				MessageBox.Show("Solo se permiten DNI entre 7 y 8 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
 			}
 
+			string expresionEmail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\r\n";
+            bool valido = Regex.IsMatch(txb_email.Text, expresionEmail);
 
-			//Email
-			if (txb_email.Text == string.Empty)
+            //Email
+            if (txb_email.Text == string.Empty)
 			{
 				MessageBox.Show("Ingrese un Email", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
 			}
-			else if (txb_email.Text.Length > 50 || txb_email.Text.Length < 2)
+			else if (!valido)
 			{
 				MessageBox.Show("Solo se permiten emails validos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
@@ -263,17 +301,19 @@ namespace InstitutoIEFI
 		public bool ValidacionCamposMateria()
 		{
 
-			// Codigo Materia
-			if (txb_CodMat.Text == string.Empty)
+			string expresionCodigo = "^[a-zA-Z]{3}\\d{3}$\r\n";
+            bool valido = Regex.IsMatch(txb_CodMat.Text, expresionCodigo);
+            // Codigo Materia
+            if (txb_CodMat.Text == string.Empty)
 			{
-				MessageBox.Show("Ingrese un Codigo de materia valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show("Ingrese un Codigo de materia valido, ej MAT123", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
 			}
-			//else if (txb_NomApAlumno.Text.Length > 50 || txb_NomApAlumno.Text.Length < 2)
-			//{
-			//	MessageBox.Show("Solo se permiten codigos de 4 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-			//	return false;
-			//}
+			else if (txb_CodMat.Text.Length <  6)
+			{
+				MessageBox.Show("El codigo necesita 6 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
 
 
 
@@ -333,11 +373,25 @@ namespace InstitutoIEFI
 				return false;
 			}
 			return true;
-
-
 		}
 
-		public bool ValidacionCamposCaja()
+        private void txb_CodMat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                // No bloquear teclas de control
+                e.Handled = false;
+                return;
+            }
+
+            //evitar que escriba mas de 6 numeros
+            if (txb_CodMat.Text.Length >= 6)
+            {
+                e.Handled = true;
+            }
+        }
+
+        public bool ValidacionCamposCaja()
 		{
 			if (txb_Nota.Text == string.Empty)
 			{
@@ -365,10 +419,10 @@ namespace InstitutoIEFI
 			return true;
 		}
 
-		#endregion
+        #endregion
 
-		#region METODOS Texto a Objeto
-		private void Txb_a_ObjAlumno()
+        #region METODOS Texto a Objeto
+        private void Txb_a_ObjAlumno()
 		{
 			objEntAlumno.dni = int.Parse(txb_dni.Text);
 			objEntAlumno.nombreapellido = txb_NomApAlumno.Text;
@@ -426,6 +480,6 @@ namespace InstitutoIEFI
 
 		}
 
-		
-	}
+       
+    }
 }
