@@ -11,7 +11,7 @@ namespace Datos
 {
 	public class ListaCursa : DatosConexionBD
 	{
-		/*public int abmCursa(string accion, Cursa objCursa)
+		public int abmCursa(string accion, Cursa objCursa)
 		{
 
 			int resultado = -1;
@@ -42,7 +42,7 @@ namespace Datos
 				cmd.Dispose();
 			}
 			return resultado;
-		}*/
+		}
 
 		/*public int abmCursa(string accion, Cursa objCursa)
 		{
@@ -108,7 +108,7 @@ namespace Datos
 			return resultado;
 		}*/
 
-		public int abmCursa(string accion, Cursa objCursa)
+		/*public int abmCursa(string accion, Cursa objCursa)
 		{
 			int resultado = -1;
 			string orden = string.Empty;
@@ -152,7 +152,7 @@ namespace Datos
 			}
 
 			return resultado;
-		}
+		}*/
 
 		public DataSet listadoCursa(string id)
 		{

@@ -114,7 +114,7 @@ namespace InstitutoIEFI
 
 		private void btn_CargarCursado_Click(object sender, EventArgs e)
 		{
-			bool validar = ValidacionCamposCaja();
+			bool validar = ValidacionCamposCursa();
 			int nGrabados = -1;
 			if (validar == true)
 			{
@@ -459,7 +459,7 @@ namespace InstitutoIEFI
 
 		}
 
-		public bool ValidacionCamposCaja()
+		public bool ValidacionCamposCursa()
 		{
 			if (txb_Nota.Text == string.Empty)
 			{
@@ -613,6 +613,7 @@ namespace InstitutoIEFI
 
 		private void Txb_a_ObjCursa()
 		{
+			objEntCursa.id = int.Parse(txb_id.Text);
 			objEntCursa.nota = int.Parse(txb_Nota.Text);
 			objEntCursa.condicion = cb_Condicion.Text.ToString();
 			objEntCursa.dni_alumno = int.Parse(cb_CursaAlumno.SelectedValue.ToString());
@@ -657,7 +658,7 @@ namespace InstitutoIEFI
 				nResultado = objNegAlumno.abmAlumno("Modificar", objEntAlumno);
 				if (nResultado != -1)
 				{
-					MessageBox.Show("el Caja fue modificada con éxito");
+					MessageBox.Show("el Alumno fue modificada con éxito");
 					LimpiarAlumno();
 					LlenarDGVAlumno();
 					btn_ModificarAlumno.Visible = false;
@@ -666,56 +667,60 @@ namespace InstitutoIEFI
 				}
 				else
 				{
-					MessageBox.Show("Se produjo un error al intentar modificar la Caja");
+					MessageBox.Show("Se produjo un error al intentar modificar el Alumno");
 				}
 			}
 
 		}
 
-		private void dgvAlumno_CellClick(object sender, DataGridViewCellEventArgs e)
+		
+
+		private void btn_ModificarMateria_Click(object sender, EventArgs e)
 		{
-			// Verifica si se hizo clic en una celda válida
-			if (e.RowIndex >= 0)
+			bool validar = ValidacionCamposMateria();
+			int nResultado = -1;
+			if (validar == true)
 			{
-				DataGridViewRow selectedRow = dgvAlumno.Rows[e.RowIndex];
-
-				// Accede a los valores de las celdas de la fila
-				string dni = selectedRow.Cells["DNI"].Value.ToString();
-				string nombreApellido = selectedRow.Cells["NombreApellido"].Value.ToString();
-				DateTime fechaNacimiento = Convert.ToDateTime(selectedRow.Cells["Fecha_Nacimiento"].Value);
-				string email = selectedRow.Cells["Email"].Value.ToString();
-				bool analitico = Convert.ToBoolean(selectedRow.Cells["Analitico"].Value);
-
-				// Llena automáticamente los TextBox en tu formulario con estos valores
-				txb_dni.Text = dni;
-				txb_NomApAlumno.Text = nombreApellido;
-				FechaNacAlumno.Value = fechaNacimiento;
-				txb_email.Text = email;
-				chbx_analitico.Checked = analitico;
+				Txb_a_ObjMateria();
+				nResultado = objNegMateria.abmMateria("Modificar", objEntMateria);
+				if (nResultado != -1)
+				{
+					MessageBox.Show("La materia fue modificada con éxito");
+					LimpiarMateria();
+					LlenarDGVMateria();
+					btn_ModificarMateria.Visible = false;
+					btn_CargarMateria.Visible = true;
+					//btnCancelarCaja.Visible = false;
+				}
+				else
+				{
+					MessageBox.Show("Se produjo un error al intentar modificar la Materia");
+				}
 			}
 		}
 
-		//private void dgvAlumno_CellClick_1(object sender, DataGridViewCellEventArgs e)
-		//{
-		//	tabControl1.SelectTab(tabAlumno);
-		//	DataSet ds = new DataSet();
-		//	objEntAlumno.dni = Convert.ToInt32(dgvAlumno.CurrentRow.Cells[0].Value);
-		//	ds = objNegAlumno.listadoAlumno(objEntAlumno.dni.ToString());
-		//	if (ds.Tables[0].Rows.Count > 0)
-		//	{
-		//		Ds_a_TxtBoxProducto(ds);
-		//		/*btnCargarProducto.Visible = false;
-		//		btnModificarProducto.Visible = true;
-		//		btnCancelarProducto.Visible = true;*/
-		//	}
-		//}
-
-		//private void Ds_a_TxtBoxProducto(DataSet ds)
-		//{
-
-		//	txb_NomApAlumno.Text = ds.Tables[0].Rows[0]["Nombre Apellido"].ToString();
-		//	FechaNacAlumno.Value = (DateTime)ds.Tables[0].Rows[0]["Fecha de Nacimiento"];
-		//	txb_email.Text = ds.Tables[0].Rows[0]["Email"].ToString();
-		//}
+		private void btn_ModificarCursado_Click(object sender, EventArgs e)
+		{
+			bool validar = ValidacionCamposCursa();
+			int nResultado = -1;
+			if (validar == true)
+			{
+				Txb_a_ObjCursa();
+				nResultado = objNegCursa.abmCursa("Modificar", objEntCursa);
+				if (nResultado != -1)
+				{
+					MessageBox.Show("el Caja fue modificada con éxito");
+					LimpiarCursa();
+					LlenarDGVCursa();
+					btn_ModificarCursado.Visible = false;
+					//btn_CargaCursa.Visible = true;
+					//btnCancelarCaja.Visible = false;
+				}
+				else
+				{
+					MessageBox.Show("Se produjo un error al intentar modificar la Caja");
+				}
+			}
+		}
 	}
 }

@@ -66,6 +66,10 @@
 			this.cb_CursaMateria = new System.Windows.Forms.ComboBox();
 			this.cb_Condicion = new System.Windows.Forms.ComboBox();
 			this.btn_ModificarAlumno = new System.Windows.Forms.Button();
+			this.btn_ModificarMateria = new System.Windows.Forms.Button();
+			this.btn_ModificarCursado = new System.Windows.Forms.Button();
+			this.txb_id = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabAlumno.SuspendLayout();
 			this.tabMateria.SuspendLayout();
@@ -194,6 +198,7 @@
 			// 
 			// tabMateria
 			// 
+			this.tabMateria.Controls.Add(this.btn_ModificarMateria);
 			this.tabMateria.Controls.Add(this.btn_CargarMateria);
 			this.tabMateria.Controls.Add(this.txb_NombreCarrera);
 			this.tabMateria.Controls.Add(this.num_AñoMateria);
@@ -310,6 +315,9 @@
 			// 
 			// tabCursa
 			// 
+			this.tabCursa.Controls.Add(this.label5);
+			this.tabCursa.Controls.Add(this.txb_id);
+			this.tabCursa.Controls.Add(this.btn_ModificarCursado);
 			this.tabCursa.Controls.Add(this.cb_Condicion);
 			this.tabCursa.Controls.Add(this.cb_CursaMateria);
 			this.tabCursa.Controls.Add(this.cb_CursaAlumno);
@@ -381,7 +389,7 @@
 			// 
 			// btn_CargarCursado
 			// 
-			this.btn_CargarCursado.Location = new System.Drawing.Point(478, 102);
+			this.btn_CargarCursado.Location = new System.Drawing.Point(287, 102);
 			this.btn_CargarCursado.Name = "btn_CargarCursado";
 			this.btn_CargarCursado.Size = new System.Drawing.Size(75, 23);
 			this.btn_CargarCursado.TabIndex = 16;
@@ -451,6 +459,42 @@
 			this.btn_ModificarAlumno.UseVisualStyleBackColor = true;
 			this.btn_ModificarAlumno.Click += new System.EventHandler(this.btn_ModificarAlumno_Click);
 			// 
+			// btn_ModificarMateria
+			// 
+			this.btn_ModificarMateria.Location = new System.Drawing.Point(207, 100);
+			this.btn_ModificarMateria.Name = "btn_ModificarMateria";
+			this.btn_ModificarMateria.Size = new System.Drawing.Size(75, 23);
+			this.btn_ModificarMateria.TabIndex = 22;
+			this.btn_ModificarMateria.Text = "Modificar";
+			this.btn_ModificarMateria.UseVisualStyleBackColor = true;
+			this.btn_ModificarMateria.Click += new System.EventHandler(this.btn_ModificarMateria_Click);
+			// 
+			// btn_ModificarCursado
+			// 
+			this.btn_ModificarCursado.Location = new System.Drawing.Point(386, 102);
+			this.btn_ModificarCursado.Name = "btn_ModificarCursado";
+			this.btn_ModificarCursado.Size = new System.Drawing.Size(75, 23);
+			this.btn_ModificarCursado.TabIndex = 23;
+			this.btn_ModificarCursado.Text = "Modificar";
+			this.btn_ModificarCursado.UseVisualStyleBackColor = true;
+			this.btn_ModificarCursado.Click += new System.EventHandler(this.btn_ModificarCursado_Click);
+			// 
+			// txb_id
+			// 
+			this.txb_id.Location = new System.Drawing.Point(613, 65);
+			this.txb_id.Name = "txb_id";
+			this.txb_id.Size = new System.Drawing.Size(90, 20);
+			this.txb_id.TabIndex = 24;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(610, 28);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(16, 13);
+			this.label5.TabIndex = 25;
+			this.label5.Text = "Id";
+			// 
 			// FormInstituto
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,5 +562,9 @@
 		private System.Windows.Forms.ComboBox cb_CursaAlumno;
 		private System.Windows.Forms.ComboBox cb_Condicion;
 		private System.Windows.Forms.Button btn_ModificarAlumno;
+		private System.Windows.Forms.Button btn_ModificarMateria;
+		private System.Windows.Forms.Button btn_ModificarCursado;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox txb_id;
 	}
 }
