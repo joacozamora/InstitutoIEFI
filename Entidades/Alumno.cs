@@ -50,9 +50,9 @@ namespace Entidades
 		#region Constructores
 		public Alumno()
 		{ }
-		public Alumno(int Dni, string nomApellido, DateTime fecha_Nac, string email, bool analitico)
+		public Alumno(int dni, string nomApellido, DateTime fecha_Nac, string email, bool analitico)
 		{
-			DNI = Dni;
+			DNI = dni;
 			NombreApellido = nomApellido;
 			Fecha_Nac = fecha_Nac;
 			Email = email;

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
@@ -19,8 +20,8 @@ namespace InstitutoIEFI
 		{
 			InitializeComponent();
 			dgvAlumno.ColumnCount = 5;
-			dgvAlumno.Columns[0].HeaderText = "Nombre Apellido";
-			dgvAlumno.Columns[1].HeaderText = "DNI";
+			dgvAlumno.Columns[0].HeaderText = "DNI";
+			dgvAlumno.Columns[1].HeaderText = "Nombre Apellido";
 			dgvAlumno.Columns[2].HeaderText = "Fecha de Nacimiento";
 			dgvAlumno.Columns[3].HeaderText = "Email";
 			dgvAlumno.Columns[4].HeaderText = "Analitico";
@@ -33,15 +34,16 @@ namespace InstitutoIEFI
 			dgvMateria.Columns[3].HeaderText = "Dia de Cursado";
 			dgvMateria.Columns[4].HeaderText = "Carrera";
 
-			dgvCursa.ColumnCount = 4;
-			dgvCursa.Columns[0].HeaderText = "DNI Alumno";
-			dgvCursa.Columns[1].HeaderText = "Codigo Materia";
-			dgvCursa.Columns[2].HeaderText = "Nota";
-			dgvCursa.Columns[3].HeaderText = "Condicion";
+			dgvCursa.ColumnCount = 5;
+			dgvCursa.Columns[0].HeaderText = "Id";
+			dgvCursa.Columns[1].HeaderText = "DNI_Alumno";
+			dgvCursa.Columns[2].HeaderText = "Nombre_Materia";
+			dgvCursa.Columns[3].HeaderText = "Nota";
+			dgvCursa.Columns[4].HeaderText = "Condicion";
 
-			cb_Condicion.Items.Add("Libre");
-			cb_Condicion.Items.Add("Regular");
-			cb_Condicion.Items.Add("Promocion");
+			//cb_Condicion.Items.Add("Libre");
+			//cb_Condicion.Items.Add("Regular");
+			//cb_Condicion.Items.Add("Promocion");
 
 
 
@@ -51,6 +53,7 @@ namespace InstitutoIEFI
 			LlenarDGVCursa();
 			LlenarCombos();
 			LlenarCombos2();
+			;
 		}
 
 		public Alumno objEntAlumno = new Alumno();
@@ -77,7 +80,7 @@ namespace InstitutoIEFI
 				}
 				else
 				{
-					MessageBox.Show("Se logró agregar al Producto con éxito");
+					MessageBox.Show("Se logró agregar al Alumno con éxito");
 					LlenarDGVAlumno();
 					LimpiarAlumno();
 					LlenarCombos();
@@ -96,11 +99,11 @@ namespace InstitutoIEFI
 				nGrabados = objNegMateria.abmMateria("Alta", objEntMateria);
 				if (nGrabados == -1)
 				{
-					MessageBox.Show("No se logró agregar Movimiento al sistema");
+					MessageBox.Show("No se logró agregar la Materia al sistema");
 				}
 				else
 				{
-					MessageBox.Show("Se logró agregar  Movimiento con éxito");
+					MessageBox.Show("Se logró agregar la Materia con éxito");
 					LlenarDGVMateria();
 					LimpiarMateria();
 					LlenarCombos2();
@@ -119,11 +122,11 @@ namespace InstitutoIEFI
 				nGrabados = objNegCursa.abmCursa("Alta", objEntCursa);
 				if (nGrabados == -1)
 				{
-					MessageBox.Show("No se logró agregar  la caja al sistema");
+					MessageBox.Show("No se logró agregar el Cursado al sistema");
 				}
 				else
 				{
-					MessageBox.Show("Se logró agregar  la caja con éxito");
+					MessageBox.Show("Se logró agregar el Cursado con éxito");
 					LlenarDGVCursa();
 					LimpiarCursa();
 					tabControl1.SelectTab(tabCursa);
@@ -174,7 +177,7 @@ namespace InstitutoIEFI
 			{
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
-					dgvCursa.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+					dgvCursa.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4]);
 				}
 			}
 		}
@@ -214,9 +217,53 @@ namespace InstitutoIEFI
 
 		public bool ValidacionCamposAlumno()
 		{
-
 			// Nombre
 			if (txb_NomApAlumno.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese un nombre de Alumno", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_NomApAlumno.Text.Length > 50 || txb_NomApAlumno.Text.Length < 2)
+			{
+				MessageBox.Show("Solo se permiten nombres de 50 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+
+
+			//DNI Alumno
+			if (txb_dni.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese un DNI valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_dni.Text.Length > 8 || txb_dni.Text.Length < 7)
+			{
+				MessageBox.Show("Solo se permiten DNI entre 7 y 8 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+
+			string expresionEmail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\r\n";
+			bool valido = Regex.IsMatch(txb_email.Text, expresionEmail);
+
+			//Email
+			/*if (txb_email.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese un Email", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (!valido)
+			{
+				MessageBox.Show("Solo se permiten emails validos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_email.Text.Length > 30)
+			{
+				MessageBox.Show("La observación no puede superar los 50 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}*/
+			return true;
+			// Nombre
+			/*if (txb_NomApAlumno.Text == string.Empty)
 			{
 				MessageBox.Show("Ingrese un nombre de Alumno", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
@@ -259,13 +306,85 @@ namespace InstitutoIEFI
 				return false;
 			}
 			return true;
-
+			*/
 
 		}
 
 		public bool ValidacionCamposMateria()
 		{
+			string expresionCodigo = "^[a-zA-Z]{3}\\d{3}$\r\n";
+			bool valido = Regex.IsMatch(txb_CodMat.Text, expresionCodigo);
+			// Codigo Materia
+			if (txb_CodMat.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese un Codigo de materia valido, ej MAT123", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_CodMat.Text.Length < 6)
+			{
+				MessageBox.Show("El codigo necesita 6 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
 
+
+
+			//Nombre Materia
+			if (txb_NombreMateria.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese un nombre valido para la materia", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_NombreMateria.Text.Length > 50 || txb_NombreMateria.Text.Length < 2)
+			{
+				MessageBox.Show("Solo se permiten nombres entre 10 y 15 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+
+			/*
+			//Año
+			if (num_AñoMateria.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese un año valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_email.Text.Length > 50 || txb_email.Text.Length < 2)
+			{
+				MessageBox.Show("Solo se permiten emails validos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_email.Text.Length > 30)
+			{
+				MessageBox.Show("La observación no puede superar los 50 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}*/
+
+			//Dia Cursado
+
+			if (txb_DiaCursado.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese un dia valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_DiaCursado.Text.Length > 50 || txb_DiaCursado.Text.Length < 2)
+			{
+				MessageBox.Show("Solo se permiten dias validos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+
+			// Nombre Carrera
+
+			if (txb_NombreCarrera.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese una carrera valida", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_NombreCarrera.Text.Length > 50 || txb_NombreCarrera.Text.Length < 2)
+			{
+				MessageBox.Show("Solo se permiten carreras hasta 30 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			return true;
+			/*
 			// Codigo Materia
 			if (txb_CodMat.Text == string.Empty)
 			{
@@ -303,12 +422,12 @@ namespace InstitutoIEFI
 			{
 				MessageBox.Show("Solo se permiten emails validos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
-			}*/
+			}
 			/*else if (txb_email.Text.Length > 30)
 			{
 				MessageBox.Show("La observación no puede superar los 50 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
-			}*/
+			}
 
 			//Dia Cursado
 
@@ -336,7 +455,7 @@ namespace InstitutoIEFI
 				return false;
 			}
 			return true;
-
+			*/
 
 		}
 
@@ -366,7 +485,106 @@ namespace InstitutoIEFI
 
 
 			return true;
+			/*
+			if (txb_Nota.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese una nota valida", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_Nota.Text.Length > 2 || txb_Nota.Text.Length < 1)
+			{
+				MessageBox.Show("Solo se permiten notas del 1 al 10", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+
+			if (txb_Nota.Text == string.Empty)
+			{
+				MessageBox.Show("Ingrese una nota valida", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+			else if (txb_Nota.Text.Length > 2 || txb_Nota.Text.Length < 1)
+			{
+				MessageBox.Show("Solo se permiten notas del 1 al 10", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+
+
+			return true;*/
 		}
+
+		private void txb_NomApAlumno_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			//evitar que escriba numeros
+			if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+			//evitar que escriba muchos letras
+			if (txb_NomApAlumno.Text.Length >= 30)
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void txb_dni_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (char.IsControl(e.KeyChar))
+			{
+				// No bloquear teclas de control
+				e.Handled = false;
+				return;
+			}
+			//comprobar que solo escriba numeros
+			if (!char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true; return;
+			}
+
+			//evitar que escriba mas de 10 numeros
+			if (txb_dni.Text.Length >= 9)
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void txb_CodMat_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (char.IsControl(e.KeyChar))
+			{
+				// No bloquear teclas de control
+				e.Handled = false;
+				return;
+			}
+
+			//evitar que escriba mas de 6 numeros
+			if (txb_CodMat.Text.Length >= 6)
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void txb_Nota_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (char.IsControl(e.KeyChar))
+			{
+				// No bloquear teclas de control
+				e.Handled = false;
+				return;
+			}
+			//comprobar que solo escriba numeros
+			if (!char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true; return;
+			}
+
+			//evitar que escriba mas de 1 numero
+			if (txb_Nota.Text.Length > 1)
+			{
+				e.Handled = true;
+			}
+		}
+
+
 
 		#endregion
 
@@ -376,8 +594,8 @@ namespace InstitutoIEFI
 			objEntAlumno.dni = int.Parse(txb_dni.Text);
 			objEntAlumno.nombreapellido = txb_NomApAlumno.Text;
 			objEntAlumno.fecha_nac = FechaNacAlumno.Value;
-			objEntAlumno.dni = int.Parse(txb_dni.Text);
 			objEntAlumno.email = txb_email.Text;
+			objEntAlumno.analitico = chbx_analitico.Checked;
 
 
 		}
@@ -396,7 +614,7 @@ namespace InstitutoIEFI
 		private void Txb_a_ObjCursa()
 		{
 			objEntCursa.nota = int.Parse(txb_Nota.Text);
-			objEntCursa.condicion = cb_Condicion.SelectedValue.ToString();
+			objEntCursa.condicion = cb_Condicion.Text.ToString();
 			objEntCursa.dni_alumno = int.Parse(cb_CursaAlumno.SelectedValue.ToString());
 			objEntCursa.codigo_materia = int.Parse(cb_CursaMateria.SelectedValue.ToString());
 
@@ -429,6 +647,75 @@ namespace InstitutoIEFI
 
 		}
 
-		
+		private void btn_ModificarAlumno_Click(object sender, EventArgs e)
+		{
+			bool validar = ValidacionCamposAlumno();
+			int nResultado = -1;
+			if (validar == true)
+			{
+				Txb_a_ObjAlumno();
+				nResultado = objNegAlumno.abmAlumno("Modificar", objEntAlumno);
+				if (nResultado != -1)
+				{
+					MessageBox.Show("el Caja fue modificada con éxito");
+					LimpiarAlumno();
+					LlenarDGVAlumno();
+					btn_ModificarAlumno.Visible = false;
+					btn_CargarAlumno.Visible = true;
+					//btnCancelarCaja.Visible = false;
+				}
+				else
+				{
+					MessageBox.Show("Se produjo un error al intentar modificar la Caja");
+				}
+			}
+
+		}
+
+		private void dgvAlumno_CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			// Verifica si se hizo clic en una celda válida
+			if (e.RowIndex >= 0)
+			{
+				DataGridViewRow selectedRow = dgvAlumno.Rows[e.RowIndex];
+
+				// Accede a los valores de las celdas de la fila
+				string dni = selectedRow.Cells["DNI"].Value.ToString();
+				string nombreApellido = selectedRow.Cells["NombreApellido"].Value.ToString();
+				DateTime fechaNacimiento = Convert.ToDateTime(selectedRow.Cells["Fecha_Nacimiento"].Value);
+				string email = selectedRow.Cells["Email"].Value.ToString();
+				bool analitico = Convert.ToBoolean(selectedRow.Cells["Analitico"].Value);
+
+				// Llena automáticamente los TextBox en tu formulario con estos valores
+				txb_dni.Text = dni;
+				txb_NomApAlumno.Text = nombreApellido;
+				FechaNacAlumno.Value = fechaNacimiento;
+				txb_email.Text = email;
+				chbx_analitico.Checked = analitico;
+			}
+		}
+
+		//private void dgvAlumno_CellClick_1(object sender, DataGridViewCellEventArgs e)
+		//{
+		//	tabControl1.SelectTab(tabAlumno);
+		//	DataSet ds = new DataSet();
+		//	objEntAlumno.dni = Convert.ToInt32(dgvAlumno.CurrentRow.Cells[0].Value);
+		//	ds = objNegAlumno.listadoAlumno(objEntAlumno.dni.ToString());
+		//	if (ds.Tables[0].Rows.Count > 0)
+		//	{
+		//		Ds_a_TxtBoxProducto(ds);
+		//		/*btnCargarProducto.Visible = false;
+		//		btnModificarProducto.Visible = true;
+		//		btnCancelarProducto.Visible = true;*/
+		//	}
+		//}
+
+		//private void Ds_a_TxtBoxProducto(DataSet ds)
+		//{
+
+		//	txb_NomApAlumno.Text = ds.Tables[0].Rows[0]["Nombre Apellido"].ToString();
+		//	FechaNacAlumno.Value = (DateTime)ds.Tables[0].Rows[0]["Fecha de Nacimiento"];
+		//	txb_email.Text = ds.Tables[0].Rows[0]["Email"].ToString();
+		//}
 	}
 }

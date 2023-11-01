@@ -65,6 +65,7 @@
 			this.cb_CursaAlumno = new System.Windows.Forms.ComboBox();
 			this.cb_CursaMateria = new System.Windows.Forms.ComboBox();
 			this.cb_Condicion = new System.Windows.Forms.ComboBox();
+			this.btn_ModificarAlumno = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tabAlumno.SuspendLayout();
 			this.tabMateria.SuspendLayout();
@@ -88,6 +89,7 @@
 			// 
 			// tabAlumno
 			// 
+			this.tabAlumno.Controls.Add(this.btn_ModificarAlumno);
 			this.tabAlumno.Controls.Add(this.btn_CargarAlumno);
 			this.tabAlumno.Controls.Add(this.chbx_analitico);
 			this.tabAlumno.Controls.Add(this.txb_email);
@@ -439,6 +441,16 @@
 			this.cb_Condicion.Size = new System.Drawing.Size(121, 21);
 			this.cb_Condicion.TabIndex = 19;
 			// 
+			// btn_ModificarAlumno
+			// 
+			this.btn_ModificarAlumno.Location = new System.Drawing.Point(200, 82);
+			this.btn_ModificarAlumno.Name = "btn_ModificarAlumno";
+			this.btn_ModificarAlumno.Size = new System.Drawing.Size(75, 23);
+			this.btn_ModificarAlumno.TabIndex = 21;
+			this.btn_ModificarAlumno.Text = "Modificar";
+			this.btn_ModificarAlumno.UseVisualStyleBackColor = true;
+			this.btn_ModificarAlumno.Click += new System.EventHandler(this.btn_ModificarAlumno_Click);
+			// 
 			// FormInstituto
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -505,5 +517,6 @@
 		private System.Windows.Forms.ComboBox cb_CursaMateria;
 		private System.Windows.Forms.ComboBox cb_CursaAlumno;
 		private System.Windows.Forms.ComboBox cb_Condicion;
+		private System.Windows.Forms.Button btn_ModificarAlumno;
 	}
 }

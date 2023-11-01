@@ -11,7 +11,7 @@ namespace Datos
 {
 	public class ListaCursa : DatosConexionBD
 	{
-		public int abmCursa(string accion, Cursa objCursa)
+		/*public int abmCursa(string accion, Cursa objCursa)
 		{
 
 			int resultado = -1;
@@ -20,7 +20,7 @@ namespace Datos
 				orden = $"insert into Cursa values ('{objCursa.id}','{objCursa.dni_alumno}','{objCursa.codigo_materia}','{objCursa.nota}','{objCursa.condicion}')";
 
 			if (accion == "Modificar")
-				orden = $"update Cursa set DNI_Alumno = '{objCursa.dni_alumno}' where Id = {objCursa.id};  update Cursa set Codigo_Materia = '{objCursa.codigo_materia}' where Id = {objCursa.id}; update Cursa set Nota = '{objCursa.nota}' where Id = {objCursa.id}; update Cursa set Condicion = '{objCursa.condicion}' where Id = {objCursa.id}; ";
+				orden = $"update Cursa set DNI_Alumno = '{objCursa.dni_alumno}' where id = {objCursa.id};  update Cursa set Codigo_Materia = '{objCursa.codigo_materia}' where id = {objCursa.id}; update Cursa set Nota = '{objCursa.nota}' where id = {objCursa.id}; update Cursa set Condicion = '{objCursa.condicion}' where id = {objCursa.id}; ";
 
 			//if (accion == "Baja")
 			//    orden = $"delete from Caja where Id = {objCaja.Id}";
@@ -41,6 +41,116 @@ namespace Datos
 				Cerrarconexion();
 				cmd.Dispose();
 			}
+			return resultado;
+		}*/
+
+		/*public int abmCursa(string accion, Cursa objCursa)
+		{
+			int resultado = -1;
+			string orden = string.Empty;
+
+			using (SqlConnection connection = new SqlConnection(cadenaConexion))
+			{
+				connection.Open();
+
+				// Habilitar IDENTITY_INSERT para la tabla Cursa antes de una inserción
+				if (accion == "Alta")
+				{
+					string habilitarIdentityInsert = "SET IDENTITY_INSERT Cursa ON";
+					using (SqlCommand enableIdentityCmd = new SqlCommand(habilitarIdentityInsert, connection))
+					{
+						enableIdentityCmd.ExecuteNonQuery();
+					}
+				}
+
+				SqlCommand cmd = new SqlCommand(orden, connection);
+
+				if (accion == "Alta")
+				{
+					orden = "INSERT INTO Cursa (DNI_Alumno, Codigo_Materia, Nota, Condicion) VALUES (@dni_alumno, @codigo_materia, @nota, @condicion)";
+					cmd.Parameters.AddWithValue("@dni_alumno", objCursa.dni_alumno);
+					cmd.Parameters.AddWithValue("@codigo_materia", objCursa.codigo_materia);
+					cmd.Parameters.AddWithValue("@nota", objCursa.nota);
+					cmd.Parameters.AddWithValue("@condicion", objCursa.condicion);
+				}
+				else if (accion == "Modificar")
+				{
+					orden = "UPDATE Cursa SET DNI_Alumno = @dni_alumno, Codigo_Materia = @codigo_materia, Nota = @nota, Condicion = @condicion WHERE Id = @id";
+					cmd.Parameters.AddWithValue("@dni_alumno", objCursa.dni_alumno);
+					cmd.Parameters.AddWithValue("@codigo_materia", objCursa.codigo_materia);
+					cmd.Parameters.AddWithValue("@nota", objCursa.nota);
+					cmd.Parameters.AddWithValue("@condicion", objCursa.condicion);
+					cmd.Parameters.AddWithValue("@id", objCursa.id);
+				}
+				// Resto de las condiciones (Baja) también deben usar parámetros.
+
+				try
+				{
+					cmd.CommandText = orden;
+					resultado = cmd.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					throw new Exception($"Error al tratar de guardar, borrar o modificar {objCursa}", e);
+				}
+
+				// Deshabilitar IDENTITY_INSERT para la tabla Cursa después de una inserción
+				if (accion == "Alta")
+				{
+					string deshabilitarIdentityInsert = "SET IDENTITY_INSERT Cursa OFF";
+					using (SqlCommand disableIdentityCmd = new SqlCommand(deshabilitarIdentityInsert, connection))
+					{
+						disableIdentityCmd.ExecuteNonQuery();
+					}
+				}
+			}
+
+			return resultado;
+		}*/
+
+		public int abmCursa(string accion, Cursa objCursa)
+		{
+			int resultado = -1;
+			string orden = string.Empty;
+
+			using (SqlConnection connection = new SqlConnection(cadenaConexion))
+			{
+				connection.Open();
+
+				SqlCommand cmd = new SqlCommand(orden, connection);
+
+				if (accion == "Alta")
+				{
+					// No incluyas la columna 'Id' en la inserción
+					orden = "INSERT INTO Cursa (DNI_Alumno, Codigo_Materia, Nota, Condicion) VALUES (@dni_alumno, @codigo_materia, @nota, @condicion)";
+					cmd.Parameters.AddWithValue("@dni_alumno", objCursa.dni_alumno);
+					cmd.Parameters.AddWithValue("@codigo_materia", objCursa.codigo_materia);
+					cmd.Parameters.AddWithValue("@nota", objCursa.nota);
+					cmd.Parameters.AddWithValue("@condicion", objCursa.condicion);
+				}
+				else if (accion == "Modificar")
+				{
+					// No incluyas la columna 'Id' en la actualización
+					orden = "UPDATE Cursa SET DNI_Alumno = @dni_alumno, Codigo_Materia = @codigo_materia, Nota = @nota, Condicion = @condicion WHERE Id = @id";
+					cmd.Parameters.AddWithValue("@dni_alumno", objCursa.dni_alumno);
+					cmd.Parameters.AddWithValue("@codigo_materia", objCursa.codigo_materia);
+					cmd.Parameters.AddWithValue("@nota", objCursa.nota);
+					cmd.Parameters.AddWithValue("@condicion", objCursa.condicion);
+					cmd.Parameters.AddWithValue("@id", objCursa.id);
+				}
+				// Resto de las condiciones (Baja) también deben usar parámetros.
+
+				try
+				{
+					cmd.CommandText = orden;
+					resultado = cmd.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					throw new Exception($"Error al tratar de guardar, borrar o modificar {objCursa}", e);
+				}
+			}
+
 			return resultado;
 		}
 
@@ -79,7 +189,7 @@ namespace Datos
 		public DataSet Unir()
 		{
 
-			string orden = $"select c.Id, c.Nota, c.Condicion, a.NombreApellido, a.Fecha_Nac, a.Email, a.Analitico, m.Nombre, m.Año_Cursado, m.Dia_Cursado , m.Nombre_Carrera from Cursa as c inner join Alumno as a on c.DNI_Alumno=a.DNI inner join Materia as m on c.Codigo_Materia=m.Codigo";
+			string orden = $"select c.Id, a.DNI, m.Nombre, c.Nota, c.Condicion from Cursa as c inner join Alumno as a on c.DNI_Alumno=a.DNI inner join Materia as m on c.Codigo_Materia=m.Codigo\r\n";
 
 			SqlCommand cmd = new SqlCommand(orden, conexion);
 			DataSet ds = new DataSet();
