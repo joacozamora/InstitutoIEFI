@@ -39,6 +39,9 @@ namespace InstitutoIEFI
 			dgvCursa.Columns[2].HeaderText = "Nota";
 			dgvCursa.Columns[3].HeaderText = "Condicion";
 
+			cb_Condicion.Items.Add("Libre");
+			cb_Condicion.Items.Add("Regular");
+			cb_Condicion.Items.Add("Promocion");
 
 
 
@@ -291,7 +294,7 @@ namespace InstitutoIEFI
 
 
 			//Año
-			if (num_AñoMateria.Text == string.Empty)
+			/*if (num_AñoMateria.Text == string.Empty)
 			{
 				MessageBox.Show("Ingrese un año valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
@@ -300,12 +303,12 @@ namespace InstitutoIEFI
 			{
 				MessageBox.Show("Solo se permiten emails validos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
-			}
-			else if (txb_email.Text.Length > 30)
+			}*/
+			/*else if (txb_email.Text.Length > 30)
 			{
 				MessageBox.Show("La observación no puede superar los 50 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return false;
-			}
+			}*/
 
 			//Dia Cursado
 
