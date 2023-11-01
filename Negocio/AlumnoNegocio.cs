@@ -23,6 +23,11 @@ namespace Negocio
 			return objDatosAlumno.listadoAlumno(categoria);
 		}
 
+		public List<Alumno> ObtenerAlumno()
+		{
+			return objDatosAlumno.ObtenerAlumno();
+		}
+
 		public DataSet ListaProductoEliminar(string id)
 		{
 			return objDatosAlumno.ListaAlumnoEliminar(id);

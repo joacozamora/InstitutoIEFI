@@ -1,0 +1,11 @@
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\bin\Debug\Negocio.dll
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\bin\Debug\Negocio.pdb
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\bin\Debug\Datos.dll
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\bin\Debug\Entidades.dll
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\bin\Debug\Datos.pdb
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\bin\Debug\Entidades.pdb
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\obj\Debug\Negocio.dll
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\Negocio\obj\Debug\Negocio.pdb

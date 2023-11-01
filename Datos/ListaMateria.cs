@@ -105,5 +105,56 @@ namespace Datos
 			}
 			return ds;
 		}
+
+		public List<Materia> ObtenerMateria()
+		{
+			List<Materia> lista = new List<Materia>();
+
+			string OrdenEjecucion = "Select Codigo, Nombre , Año_Cursado , Dia_Cursado ,  Nombre_Carrera from Materia";
+
+			SqlCommand cmd = new SqlCommand(OrdenEjecucion, conexion);
+
+			SqlDataReader dataReader;
+
+			try
+			{
+				Abrirconexion();
+
+				dataReader = cmd.ExecuteReader();
+
+				while (dataReader.Read())
+				{
+
+					
+					int codigo = dataReader.GetInt32(0);
+					string nombre = dataReader.GetString(1);
+					string nombremateria = $"{nombre},{codigo}";
+
+
+					Materia materia = new Materia();
+
+					materia.id = dataReader.GetInt32(0);//instancia del objeto producto para obtener el campo id
+
+					materia.nombre = nombremateria;
+
+					lista.Add(materia);
+
+				}
+			}
+			catch (Exception e)
+			{
+
+				throw new Exception("Error al obtener la lista de la materia para agregar al alumno", e);
+			}
+
+			finally
+			{
+				Cerrarconexion();
+				cmd.Dispose();
+			}
+
+			return lista;
+		}
+
 	}
 }
