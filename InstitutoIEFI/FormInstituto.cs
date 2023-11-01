@@ -480,6 +480,25 @@ namespace InstitutoIEFI
 
 		}
 
-       
+        private void txb_Nota_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                // No bloquear teclas de control
+                e.Handled = false;
+                return;
+            }
+            //comprobar que solo escriba numeros
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; return;
+            }
+
+            //evitar que escriba mas de 1 numero
+            if (txb_Nota.Text.Length > 1)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

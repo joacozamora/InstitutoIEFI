@@ -101,7 +101,7 @@
             this.tabAlumno.Location = new System.Drawing.Point(4, 22);
             this.tabAlumno.Name = "tabAlumno";
             this.tabAlumno.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAlumno.Size = new System.Drawing.Size(900, 159);
+            this.tabAlumno.Size = new System.Drawing.Size(815, 159);
             this.tabAlumno.TabIndex = 0;
             this.tabAlumno.Text = "Alumno";
             this.tabAlumno.UseVisualStyleBackColor = true;
@@ -332,7 +332,7 @@
             this.tabCursa.Controls.Add(this.label11);
             this.tabCursa.Location = new System.Drawing.Point(4, 22);
             this.tabCursa.Name = "tabCursa";
-            this.tabCursa.Size = new System.Drawing.Size(900, 159);
+            this.tabCursa.Size = new System.Drawing.Size(815, 159);
             this.tabCursa.TabIndex = 2;
             this.tabCursa.Text = "Cursado";
             this.tabCursa.UseVisualStyleBackColor = true;
@@ -381,6 +381,7 @@
             this.txb_Nota.Name = "txb_Nota";
             this.txb_Nota.Size = new System.Drawing.Size(90, 20);
             this.txb_Nota.TabIndex = 15;
+            this.txb_Nota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_Nota_KeyPress);
             // 
             // label14
             // 
