@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -101,6 +102,24 @@ namespace Datos
 			}
 			return ds;
 		}
+
+		/*public static bool AlumnoExiste(string id)
+		{
+			using (SqlConnection connection = new SqlConnection(cadenaConexion))
+			{
+				connection.Open();
+
+				string consulta = "SELECT COUNT(*) FROM Alumnos WHERE DNI = @DNI";
+
+				using (SqlCommand cmd = new SqlCommand(consulta, connection))
+				{
+					cmd.Parameters.AddWithValue("@DNI", objAlumno.dni);
+					int resultado = (int)cmd.ExecuteScalar();
+
+					return resultado > 0;
+				}
+			}
+		}*/
 
 		public List<Alumno> ObtenerAlumno()
 		{

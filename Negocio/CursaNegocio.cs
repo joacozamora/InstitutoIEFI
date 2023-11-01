@@ -27,6 +27,13 @@ namespace Negocio
 		{
 			return objDatosCursa.Unir();
 		}
+
+		public bool ExisteCursa(int dniAlumno, int codigoMateria)
+		{
+			// Lógica para verificar si la combinación de DNI y materia ya existe en la tabla Cursa.
+			// Utiliza un método en la capa de datos para realizar la consulta SQL.
+			return objDatosCursa.ExisteCursa(dniAlumno, codigoMateria);
+		}
 		public DataSet ListaProductoEliminar(string id)
 		{
 			return objDatosCursa.ListaCursaEliminar(id);

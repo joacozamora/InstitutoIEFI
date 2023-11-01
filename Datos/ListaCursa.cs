@@ -17,10 +17,10 @@ namespace Datos
 			int resultado = -1;
 			string orden = string.Empty;
 			if (accion == "Alta")
-				orden = $"insert into Cursa values ('{objCursa.id}','{objCursa.dni_alumno}','{objCursa.codigo_materia}','{objCursa.nota}','{objCursa.condicion}')";
+				orden = $"insert into Cursa values ('{objCursa.dni_alumno}','{objCursa.codigo_materia}','{objCursa.nota}','{objCursa.condicion}')";
 
 			if (accion == "Modificar")
-				orden = $"update Cursa set DNI_Alumno = '{objCursa.dni_alumno}' where id = {objCursa.id};  update Cursa set Codigo_Materia = '{objCursa.codigo_materia}' where id = {objCursa.id}; update Cursa set Nota = '{objCursa.nota}' where id = {objCursa.id}; update Cursa set Condicion = '{objCursa.condicion}' where id = {objCursa.id}; ";
+				orden = $"update Cursa set DNI_Alumno = '{objCursa.dni_alumno}' where Id = {objCursa.id};  update Cursa set Codigo_Materia = '{objCursa.codigo_materia}' where Id = {objCursa.id}; update Cursa set Nota = '{objCursa.nota}' where Id = {objCursa.id}; update Cursa set Condicion = '{objCursa.condicion}' where Id = {objCursa.id}; ";
 
 			//if (accion == "Baja")
 			//    orden = $"delete from Caja where Id = {objCaja.Id}";
@@ -43,6 +43,59 @@ namespace Datos
 			}
 			return resultado;
 		}
+
+		public bool ExisteCursa(int dni, int codigoMateria)
+		{
+			// Aquí debes realizar una consulta SQL para verificar si ya existe la combinación
+			// de DNI y materia en la tabla Cursa.
+
+			// Por ejemplo:
+			string consulta = "SELECT COUNT(*) FROM Cursa WHERE DNI_Alumno = @dni AND Codigo_Materia = @codigoMateria";
+
+			using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+			using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+			{
+				cmd.Parameters.AddWithValue("@dni", dni);
+				cmd.Parameters.AddWithValue("@codigoMateria", codigoMateria);
+
+				conexion.Open();
+				int cantidad = (int)cmd.ExecuteScalar();
+
+				return cantidad > 0;
+			}
+		}
+
+		//public DataSet listadoCursa(string id)
+		//{
+		//	string orden = string.Empty;
+		//	if (id != "Todos")
+		//		orden = $"select * from Cursa where Id = {int.Parse(id)};";
+		//	else
+		//		orden = "select * from Cursa;";
+		//	SqlCommand cmd = new SqlCommand(orden, conexion);
+		//	DataSet ds = new DataSet();
+		//	SqlDataAdapter da = new SqlDataAdapter();
+		//	try
+		//	{
+		//		Abrirconexion();
+		//		cmd.ExecuteNonQuery();
+		//		da.SelectCommand = cmd;
+		//		da.Fill(ds);
+
+		//		return ds;
+		//	}
+		//	catch (Exception e)
+		//	{
+		//		return ds = null;
+		//		throw new Exception("Error al listar tabla Cursa", e);
+		//	}
+		//	finally
+		//	{
+		//		Cerrarconexion();
+		//		cmd.Dispose();
+		//	}
+		//	//return ds;
+		//}
 
 		/*public int abmCursa(string accion, Cursa objCursa)
 		{

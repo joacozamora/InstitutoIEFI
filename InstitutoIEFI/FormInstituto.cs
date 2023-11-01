@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -53,7 +54,10 @@ namespace InstitutoIEFI
 			LlenarDGVCursa();
 			LlenarCombos();
 			LlenarCombos2();
-			;
+			dgvCursa.CellClick += new DataGridViewCellEventHandler(dgvCursa_CellClick);
+			dgvAlumno.CellClick += new DataGridViewCellEventHandler(dgvAlumno_CellClick);
+			dgvMateria.CellClick += new DataGridViewCellEventHandler(dgvMateria_CellClick);
+
 		}
 
 		public Alumno objEntAlumno = new Alumno();
@@ -70,7 +74,36 @@ namespace InstitutoIEFI
 		{
 			bool validar = ValidacionCamposAlumno();
 			int nGrabados = -1;
-			if (validar == true)
+			string dni = txb_dni.Text;
+
+			DataSet ds = objNegAlumno.listadoAlumno(dni);
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				// Ya existe un alumno con este DNI, muestra un mensaje de error o toma la acción necesaria.
+				MessageBox.Show("Ya existe un alumno con este DNI.");
+			}
+			else
+			{
+				if (validar == true)
+				{
+					Txb_a_ObjAlumno();
+					nGrabados = objNegAlumno.abmAlumno("Alta", objEntAlumno);
+					if (nGrabados == -1)
+					{
+						MessageBox.Show("No se logró agregar el Alumno al sistema");
+					}
+					else
+					{
+						MessageBox.Show("Se logró agregar al Alumno con éxito");
+						LlenarDGVAlumno();
+						LimpiarAlumno();
+						LlenarCombos();
+						tabControl1.SelectTab(tabAlumno);
+					}
+				}
+			}
+			/*if (validar == true)
 			{
 				Txb_a_ObjAlumno();
 				nGrabados = objNegAlumno.abmAlumno("Alta", objEntAlumno);
@@ -86,7 +119,7 @@ namespace InstitutoIEFI
 					LlenarCombos();
 					tabControl1.SelectTab(tabAlumno);
 				}
-			}
+			}*/
 		}
 
 		private void btn_CargarMateria_Click(object sender, EventArgs e)
@@ -116,23 +149,35 @@ namespace InstitutoIEFI
 		{
 			bool validar = ValidacionCamposCursa();
 			int nGrabados = -1;
-			if (validar == true)
+			int dniAlumno = int.Parse(cb_CursaAlumno.SelectedValue.ToString());
+			int codigoMateria = int.Parse(cb_CursaMateria.SelectedValue.ToString());
+			bool existeCursa = objNegCursa.ExisteCursa(dniAlumno, codigoMateria);
+			//DataSet ds = objNegCursa.listadoCursa(dniAlumno.ToString(), codigoMateria.ToString());
+			if (existeCursa)
 			{
-				Txb_a_ObjCursa();
-				nGrabados = objNegCursa.abmCursa("Alta", objEntCursa);
-				if (nGrabados == -1)
+				MessageBox.Show("Este alumno ya tiene su nota final cargada.");
+			}
+			else
+			{
+				if (validar == true)
 				{
-					MessageBox.Show("No se logró agregar el Cursado al sistema");
-				}
-				else
-				{
-					MessageBox.Show("Se logró agregar el Cursado con éxito");
-					LlenarDGVCursa();
-					LimpiarCursa();
-					tabControl1.SelectTab(tabCursa);
+					Txb_a_ObjCursa();
+					nGrabados = objNegCursa.abmCursa("Alta", objEntCursa);
+					if (nGrabados == -1)
+					{
+						MessageBox.Show("No se logró agregar el Cursado al sistema");
+					}
+					else
+					{
+						MessageBox.Show("Se logró agregar el Cursado con éxito");
+						LlenarDGVCursa();
+						LimpiarCursa();
+						tabControl1.SelectTab(tabCursa);
 
+					}
 				}
 			}
+
 		}
 
 		#endregion
@@ -593,9 +638,27 @@ namespace InstitutoIEFI
 		{
 			objEntAlumno.dni = int.Parse(txb_dni.Text);
 			objEntAlumno.nombreapellido = txb_NomApAlumno.Text;
-			objEntAlumno.fecha_nac = FechaNacAlumno.Value;
+
+			// Validar la fecha ingresada
+			DateTime fechaNac;
+			if (DateTime.TryParse(FechaNacAlumno.Value.ToString(), out fechaNac))
+			{
+				objEntAlumno.fecha_nac = fechaNac;
+			}
+			else
+			{
+				// Mostrar un mensaje de error o realizar alguna acción para manejar la fecha no válida.
+				MessageBox.Show("La fecha ingresada no es válida.");
+				return; // Puedes salir del método aquí para evitar guardar datos incorrectos.
+			}
+
 			objEntAlumno.email = txb_email.Text;
 			objEntAlumno.analitico = chbx_analitico.Checked;
+			//objEntAlumno.dni = int.Parse(txb_dni.Text);
+			//objEntAlumno.nombreapellido = txb_NomApAlumno.Text;
+			//objEntAlumno.fecha_nac = DateTime.TryParse(FechaNacAlumno.Value);
+			//objEntAlumno.email = txb_email.Text;
+			//objEntAlumno.analitico = chbx_analitico.Checked;
 
 
 		}
@@ -613,7 +676,7 @@ namespace InstitutoIEFI
 
 		private void Txb_a_ObjCursa()
 		{
-			objEntCursa.id = int.Parse(txb_id.Text);
+
 			objEntCursa.nota = int.Parse(txb_Nota.Text);
 			objEntCursa.condicion = cb_Condicion.Text.ToString();
 			objEntCursa.dni_alumno = int.Parse(cb_CursaAlumno.SelectedValue.ToString());
@@ -648,6 +711,7 @@ namespace InstitutoIEFI
 
 		}
 
+		#region Modificar
 		private void btn_ModificarAlumno_Click(object sender, EventArgs e)
 		{
 			bool validar = ValidacionCamposAlumno();
@@ -673,7 +737,7 @@ namespace InstitutoIEFI
 
 		}
 
-		
+
 
 		private void btn_ModificarMateria_Click(object sender, EventArgs e)
 		{
@@ -720,6 +784,45 @@ namespace InstitutoIEFI
 				{
 					MessageBox.Show("Se produjo un error al intentar modificar la Caja");
 				}
+			}
+		}
+		#endregion
+
+		private void dgvCursa_CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex >= 0)
+			{
+				string nota = dgvCursa.Rows[e.RowIndex].Cells[3].Value.ToString();
+				
+				txb_Nota.Text = nota;
+			}
+		}
+
+		private void dgvAlumno_CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex >= 0)
+			{
+				DataGridViewRow fila = dgvAlumno.Rows[e.RowIndex];
+				txb_dni.Text = fila.Cells[0].Value.ToString(); 
+				txb_NomApAlumno.Text = fila.Cells[1].Value.ToString(); 
+				FechaNacAlumno.Value = Convert.ToDateTime(fila.Cells[2].Value); 
+				txb_email.Text = fila.Cells[3].Value.ToString(); 
+				chbx_analitico.Checked = Convert.ToBoolean(fila.Cells[4].Value); 
+			}
+		}
+
+		private void dgvMateria_CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex >= 0)
+			{
+				DataGridViewRow row = dgvMateria.Rows[e.RowIndex];
+
+				
+				txb_CodMat.Text = row.Cells[0].Value.ToString();
+				txb_NombreMateria.Text = row.Cells[1].Value.ToString();
+				num_AñoMateria.Text = row.Cells[2].Value.ToString();
+				txb_DiaCursado.Text = row.Cells[3].Value.ToString();
+				txb_NombreCarrera.Text = row.Cells[4].Value.ToString();
 			}
 		}
 	}

@@ -28,6 +28,11 @@ namespace Negocio
 			return objDatosAlumno.ObtenerAlumno();
 		}
 
+		/*public static bool AlumnoExiste(string dni)
+		{
+			return objDatosAlumno.AlumnoExiste(dni);
+		}*/
+
 		public DataSet ListaProductoEliminar(string id)
 		{
 			return objDatosAlumno.ListaAlumnoEliminar(id);
