@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.tabAlumno = new System.Windows.Forms.TabPage();
 			this.btn_CargarAlumno = new System.Windows.Forms.Button();
 			this.chbx_analitico = new System.Windows.Forms.CheckBox();
 			this.txb_email = new System.Windows.Forms.TextBox();
@@ -40,67 +40,75 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.textBox7 = new System.Windows.Forms.TextBox();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.tabMateria = new System.Windows.Forms.TabPage();
+			this.txb_NombreCarrera = new System.Windows.Forms.TextBox();
+			this.num_AñoMateria = new System.Windows.Forms.NumericUpDown();
+			this.txb_DiaCursado = new System.Windows.Forms.TextBox();
+			this.txb_NombreMateria = new System.Windows.Forms.TextBox();
+			this.txb_CodMat = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.textBox11 = new System.Windows.Forms.TextBox();
-			this.textBox10 = new System.Windows.Forms.TextBox();
-			this.textBox9 = new System.Windows.Forms.TextBox();
-			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.tabCursa = new System.Windows.Forms.TabPage();
+			this.txb_Nota = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
+			this.btn_CargarMateria = new System.Windows.Forms.Button();
+			this.btn_CargarCursado = new System.Windows.Forms.Button();
+			this.dgvAlumno = new System.Windows.Forms.DataGridView();
+			this.dgvMateria = new System.Windows.Forms.DataGridView();
+			this.dgvCursa = new System.Windows.Forms.DataGridView();
+			this.cb_CursaAlumno = new System.Windows.Forms.ComboBox();
+			this.cb_CursaMateria = new System.Windows.Forms.ComboBox();
+			this.cb_Condicion = new System.Windows.Forms.ComboBox();
 			this.tabControl1.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			this.tabPage2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-			this.tabPage3.SuspendLayout();
+			this.tabAlumno.SuspendLayout();
+			this.tabMateria.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.num_AñoMateria)).BeginInit();
+			this.tabCursa.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgvAlumno)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvMateria)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvCursa)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Controls.Add(this.tabAlumno);
+			this.tabControl1.Controls.Add(this.tabMateria);
+			this.tabControl1.Controls.Add(this.tabCursa);
 			this.tabControl1.Location = new System.Drawing.Point(26, 11);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1038, 253);
+			this.tabControl1.Size = new System.Drawing.Size(908, 185);
 			this.tabControl1.TabIndex = 6;
 			// 
-			// tabPage1
+			// tabAlumno
 			// 
-			this.tabPage1.Controls.Add(this.btn_CargarAlumno);
-			this.tabPage1.Controls.Add(this.chbx_analitico);
-			this.tabPage1.Controls.Add(this.txb_email);
-			this.tabPage1.Controls.Add(this.FechaNacAlumno);
-			this.tabPage1.Controls.Add(this.txb_dni);
-			this.tabPage1.Controls.Add(this.txb_NomApAlumno);
-			this.tabPage1.Controls.Add(this.label4);
-			this.tabPage1.Controls.Add(this.label1);
-			this.tabPage1.Controls.Add(this.label3);
-			this.tabPage1.Controls.Add(this.label2);
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1030, 227);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Alumno";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.tabAlumno.Controls.Add(this.btn_CargarAlumno);
+			this.tabAlumno.Controls.Add(this.chbx_analitico);
+			this.tabAlumno.Controls.Add(this.txb_email);
+			this.tabAlumno.Controls.Add(this.FechaNacAlumno);
+			this.tabAlumno.Controls.Add(this.txb_dni);
+			this.tabAlumno.Controls.Add(this.txb_NomApAlumno);
+			this.tabAlumno.Controls.Add(this.label4);
+			this.tabAlumno.Controls.Add(this.label1);
+			this.tabAlumno.Controls.Add(this.label3);
+			this.tabAlumno.Controls.Add(this.label2);
+			this.tabAlumno.Location = new System.Drawing.Point(4, 22);
+			this.tabAlumno.Name = "tabAlumno";
+			this.tabAlumno.Padding = new System.Windows.Forms.Padding(3);
+			this.tabAlumno.Size = new System.Drawing.Size(900, 159);
+			this.tabAlumno.TabIndex = 0;
+			this.tabAlumno.Text = "Alumno";
+			this.tabAlumno.UseVisualStyleBackColor = true;
 			// 
 			// btn_CargarAlumno
 			// 
-			this.btn_CargarAlumno.Location = new System.Drawing.Point(353, 121);
+			this.btn_CargarAlumno.Location = new System.Drawing.Point(56, 82);
 			this.btn_CargarAlumno.Name = "btn_CargarAlumno";
 			this.btn_CargarAlumno.Size = new System.Drawing.Size(75, 23);
 			this.btn_CargarAlumno.TabIndex = 10;
@@ -182,75 +190,76 @@
 			this.label2.TabIndex = 1;
 			this.label2.Text = "DNI";
 			// 
-			// tabPage2
+			// tabMateria
 			// 
-			this.tabPage2.Controls.Add(this.textBox7);
-			this.tabPage2.Controls.Add(this.numericUpDown1);
-			this.tabPage2.Controls.Add(this.textBox6);
-			this.tabPage2.Controls.Add(this.textBox5);
-			this.tabPage2.Controls.Add(this.textBox4);
-			this.tabPage2.Controls.Add(this.label10);
-			this.tabPage2.Controls.Add(this.label9);
-			this.tabPage2.Controls.Add(this.label8);
-			this.tabPage2.Controls.Add(this.label7);
-			this.tabPage2.Controls.Add(this.label6);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(1030, 227);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Materias";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.tabMateria.Controls.Add(this.btn_CargarMateria);
+			this.tabMateria.Controls.Add(this.txb_NombreCarrera);
+			this.tabMateria.Controls.Add(this.num_AñoMateria);
+			this.tabMateria.Controls.Add(this.txb_DiaCursado);
+			this.tabMateria.Controls.Add(this.txb_NombreMateria);
+			this.tabMateria.Controls.Add(this.txb_CodMat);
+			this.tabMateria.Controls.Add(this.label10);
+			this.tabMateria.Controls.Add(this.label9);
+			this.tabMateria.Controls.Add(this.label8);
+			this.tabMateria.Controls.Add(this.label7);
+			this.tabMateria.Controls.Add(this.label6);
+			this.tabMateria.Location = new System.Drawing.Point(4, 22);
+			this.tabMateria.Name = "tabMateria";
+			this.tabMateria.Padding = new System.Windows.Forms.Padding(3);
+			this.tabMateria.Size = new System.Drawing.Size(900, 159);
+			this.tabMateria.TabIndex = 1;
+			this.tabMateria.Text = "Materias";
+			this.tabMateria.UseVisualStyleBackColor = true;
 			// 
-			// textBox7
+			// txb_NombreCarrera
 			// 
-			this.textBox7.Location = new System.Drawing.Point(693, 57);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(90, 20);
-			this.textBox7.TabIndex = 11;
+			this.txb_NombreCarrera.Location = new System.Drawing.Point(693, 57);
+			this.txb_NombreCarrera.Name = "txb_NombreCarrera";
+			this.txb_NombreCarrera.Size = new System.Drawing.Size(90, 20);
+			this.txb_NombreCarrera.TabIndex = 11;
 			// 
-			// numericUpDown1
+			// num_AñoMateria
 			// 
-			this.numericUpDown1.Location = new System.Drawing.Point(354, 56);
-			this.numericUpDown1.Maximum = new decimal(new int[] {
+			this.num_AñoMateria.Location = new System.Drawing.Point(354, 56);
+			this.num_AñoMateria.Maximum = new decimal(new int[] {
             2024,
             0,
             0,
             0});
-			this.numericUpDown1.Minimum = new decimal(new int[] {
+			this.num_AñoMateria.Minimum = new decimal(new int[] {
             2015,
             0,
             0,
             0});
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-			this.numericUpDown1.TabIndex = 10;
-			this.numericUpDown1.Value = new decimal(new int[] {
+			this.num_AñoMateria.Name = "num_AñoMateria";
+			this.num_AñoMateria.Size = new System.Drawing.Size(120, 20);
+			this.num_AñoMateria.TabIndex = 10;
+			this.num_AñoMateria.Value = new decimal(new int[] {
             2023,
             0,
             0,
             0});
 			// 
-			// textBox6
+			// txb_DiaCursado
 			// 
-			this.textBox6.Location = new System.Drawing.Point(518, 57);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(90, 20);
-			this.textBox6.TabIndex = 9;
+			this.txb_DiaCursado.Location = new System.Drawing.Point(518, 57);
+			this.txb_DiaCursado.Name = "txb_DiaCursado";
+			this.txb_DiaCursado.Size = new System.Drawing.Size(90, 20);
+			this.txb_DiaCursado.TabIndex = 9;
 			// 
-			// textBox5
+			// txb_NombreMateria
 			// 
-			this.textBox5.Location = new System.Drawing.Point(207, 57);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(90, 20);
-			this.textBox5.TabIndex = 8;
+			this.txb_NombreMateria.Location = new System.Drawing.Point(207, 57);
+			this.txb_NombreMateria.Name = "txb_NombreMateria";
+			this.txb_NombreMateria.Size = new System.Drawing.Size(90, 20);
+			this.txb_NombreMateria.TabIndex = 8;
 			// 
-			// textBox4
+			// txb_CodMat
 			// 
-			this.textBox4.Location = new System.Drawing.Point(51, 57);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(100, 20);
-			this.textBox4.TabIndex = 7;
+			this.txb_CodMat.Location = new System.Drawing.Point(51, 57);
+			this.txb_CodMat.Name = "txb_CodMat";
+			this.txb_CodMat.Size = new System.Drawing.Size(100, 20);
+			this.txb_CodMat.TabIndex = 7;
 			// 
 			// label10
 			// 
@@ -297,50 +306,30 @@
 			this.label6.TabIndex = 0;
 			this.label6.Text = "Código";
 			// 
-			// tabPage3
+			// tabCursa
 			// 
-			this.tabPage3.Controls.Add(this.textBox11);
-			this.tabPage3.Controls.Add(this.textBox10);
-			this.tabPage3.Controls.Add(this.textBox9);
-			this.tabPage3.Controls.Add(this.textBox8);
-			this.tabPage3.Controls.Add(this.label14);
-			this.tabPage3.Controls.Add(this.label13);
-			this.tabPage3.Controls.Add(this.label12);
-			this.tabPage3.Controls.Add(this.label11);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(1030, 227);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "Cursado";
-			this.tabPage3.UseVisualStyleBackColor = true;
+			this.tabCursa.Controls.Add(this.cb_Condicion);
+			this.tabCursa.Controls.Add(this.cb_CursaMateria);
+			this.tabCursa.Controls.Add(this.cb_CursaAlumno);
+			this.tabCursa.Controls.Add(this.btn_CargarCursado);
+			this.tabCursa.Controls.Add(this.txb_Nota);
+			this.tabCursa.Controls.Add(this.label14);
+			this.tabCursa.Controls.Add(this.label13);
+			this.tabCursa.Controls.Add(this.label12);
+			this.tabCursa.Controls.Add(this.label11);
+			this.tabCursa.Location = new System.Drawing.Point(4, 22);
+			this.tabCursa.Name = "tabCursa";
+			this.tabCursa.Size = new System.Drawing.Size(900, 159);
+			this.tabCursa.TabIndex = 2;
+			this.tabCursa.Text = "Cursado";
+			this.tabCursa.UseVisualStyleBackColor = true;
 			// 
-			// textBox11
+			// txb_Nota
 			// 
-			this.textBox11.Location = new System.Drawing.Point(346, 64);
-			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(90, 20);
-			this.textBox11.TabIndex = 15;
-			// 
-			// textBox10
-			// 
-			this.textBox10.Location = new System.Drawing.Point(471, 64);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(90, 20);
-			this.textBox10.TabIndex = 14;
-			// 
-			// textBox9
-			// 
-			this.textBox9.Location = new System.Drawing.Point(208, 64);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(90, 20);
-			this.textBox9.TabIndex = 13;
-			// 
-			// textBox8
-			// 
-			this.textBox8.Location = new System.Drawing.Point(60, 64);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(90, 20);
-			this.textBox8.TabIndex = 12;
+			this.txb_Nota.Location = new System.Drawing.Point(346, 64);
+			this.txb_Nota.Name = "txb_Nota";
+			this.txb_Nota.Size = new System.Drawing.Size(90, 20);
+			this.txb_Nota.TabIndex = 15;
 			// 
 			// label14
 			// 
@@ -378,22 +367,101 @@
 			this.label11.TabIndex = 1;
 			this.label11.Text = "DNI Alumno";
 			// 
+			// btn_CargarMateria
+			// 
+			this.btn_CargarMateria.Location = new System.Drawing.Point(76, 100);
+			this.btn_CargarMateria.Name = "btn_CargarMateria";
+			this.btn_CargarMateria.Size = new System.Drawing.Size(75, 23);
+			this.btn_CargarMateria.TabIndex = 12;
+			this.btn_CargarMateria.Text = "Cargar";
+			this.btn_CargarMateria.UseVisualStyleBackColor = true;
+			this.btn_CargarMateria.Click += new System.EventHandler(this.btn_CargarMateria_Click);
+			// 
+			// btn_CargarCursado
+			// 
+			this.btn_CargarCursado.Location = new System.Drawing.Point(478, 102);
+			this.btn_CargarCursado.Name = "btn_CargarCursado";
+			this.btn_CargarCursado.Size = new System.Drawing.Size(75, 23);
+			this.btn_CargarCursado.TabIndex = 16;
+			this.btn_CargarCursado.Text = "Cargar";
+			this.btn_CargarCursado.UseVisualStyleBackColor = true;
+			this.btn_CargarCursado.Click += new System.EventHandler(this.btn_CargarCursado_Click);
+			// 
+			// dgvAlumno
+			// 
+			this.dgvAlumno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvAlumno.Location = new System.Drawing.Point(26, 202);
+			this.dgvAlumno.Name = "dgvAlumno";
+			this.dgvAlumno.Size = new System.Drawing.Size(904, 150);
+			this.dgvAlumno.TabIndex = 7;
+			// 
+			// dgvMateria
+			// 
+			this.dgvMateria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvMateria.Location = new System.Drawing.Point(26, 358);
+			this.dgvMateria.Name = "dgvMateria";
+			this.dgvMateria.Size = new System.Drawing.Size(904, 150);
+			this.dgvMateria.TabIndex = 8;
+			// 
+			// dgvCursa
+			// 
+			this.dgvCursa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvCursa.Location = new System.Drawing.Point(26, 514);
+			this.dgvCursa.Name = "dgvCursa";
+			this.dgvCursa.Size = new System.Drawing.Size(904, 150);
+			this.dgvCursa.TabIndex = 9;
+			// 
+			// cb_CursaAlumno
+			// 
+			this.cb_CursaAlumno.FormattingEnabled = true;
+			this.cb_CursaAlumno.Location = new System.Drawing.Point(60, 62);
+			this.cb_CursaAlumno.Name = "cb_CursaAlumno";
+			this.cb_CursaAlumno.Size = new System.Drawing.Size(121, 21);
+			this.cb_CursaAlumno.TabIndex = 17;
+			// 
+			// cb_CursaMateria
+			// 
+			this.cb_CursaMateria.FormattingEnabled = true;
+			this.cb_CursaMateria.Location = new System.Drawing.Point(208, 64);
+			this.cb_CursaMateria.Name = "cb_CursaMateria";
+			this.cb_CursaMateria.Size = new System.Drawing.Size(121, 21);
+			this.cb_CursaMateria.TabIndex = 18;
+			// 
+			// cb_Condicion
+			// 
+			this.cb_Condicion.FormattingEnabled = true;
+			this.cb_Condicion.Items.AddRange(new object[] {
+            "Libre",
+            "Regular",
+            "Promocion"});
+			this.cb_Condicion.Location = new System.Drawing.Point(471, 63);
+			this.cb_Condicion.Name = "cb_Condicion";
+			this.cb_Condicion.Size = new System.Drawing.Size(121, 21);
+			this.cb_Condicion.TabIndex = 19;
+			// 
 			// FormInstituto
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1497, 450);
+			this.ClientSize = new System.Drawing.Size(1497, 676);
+			this.Controls.Add(this.dgvCursa);
+			this.Controls.Add(this.dgvMateria);
+			this.Controls.Add(this.dgvAlumno);
 			this.Controls.Add(this.tabControl1);
 			this.Name = "FormInstituto";
 			this.Text = "FormInstituto";
+			this.Load += new System.EventHandler(this.FormInstituto_Load);
 			this.tabControl1.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			this.tabPage1.PerformLayout();
-			this.tabPage2.ResumeLayout(false);
-			this.tabPage2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-			this.tabPage3.ResumeLayout(false);
-			this.tabPage3.PerformLayout();
+			this.tabAlumno.ResumeLayout(false);
+			this.tabAlumno.PerformLayout();
+			this.tabMateria.ResumeLayout(false);
+			this.tabMateria.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.num_AñoMateria)).EndInit();
+			this.tabCursa.ResumeLayout(false);
+			this.tabCursa.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgvAlumno)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvMateria)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvCursa)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -401,7 +469,7 @@
 		#endregion
 
 		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage tabAlumno;
 		private System.Windows.Forms.Button btn_CargarAlumno;
 		private System.Windows.Forms.CheckBox chbx_analitico;
 		private System.Windows.Forms.TextBox txb_email;
@@ -412,25 +480,30 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.TextBox textBox7;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
-		private System.Windows.Forms.TextBox textBox6;
-		private System.Windows.Forms.TextBox textBox5;
-		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.TabPage tabMateria;
+		private System.Windows.Forms.TextBox txb_NombreCarrera;
+		private System.Windows.Forms.NumericUpDown num_AñoMateria;
+		private System.Windows.Forms.TextBox txb_DiaCursado;
+		private System.Windows.Forms.TextBox txb_NombreMateria;
+		private System.Windows.Forms.TextBox txb_CodMat;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.TabPage tabPage3;
-		private System.Windows.Forms.TextBox textBox11;
-		private System.Windows.Forms.TextBox textBox10;
-		private System.Windows.Forms.TextBox textBox9;
-		private System.Windows.Forms.TextBox textBox8;
+		private System.Windows.Forms.TabPage tabCursa;
+		private System.Windows.Forms.TextBox txb_Nota;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Button btn_CargarMateria;
+		private System.Windows.Forms.Button btn_CargarCursado;
+		private System.Windows.Forms.DataGridView dgvAlumno;
+		private System.Windows.Forms.DataGridView dgvMateria;
+		private System.Windows.Forms.DataGridView dgvCursa;
+		private System.Windows.Forms.ComboBox cb_CursaMateria;
+		private System.Windows.Forms.ComboBox cb_CursaAlumno;
+		private System.Windows.Forms.ComboBox cb_Condicion;
 	}
 }

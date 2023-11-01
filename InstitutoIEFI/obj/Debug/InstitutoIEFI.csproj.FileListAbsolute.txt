@@ -3,9 +3,16 @@ C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\InstitutoIEFI.pdb
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.AssemblyReference.cache
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.SuggestedBindingRedirects.cache
-C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.Form1.resources
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.Properties.Resources.resources
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.GenerateResource.cache
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.CoreCompileInputs.cache
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.exe
 C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.pdb
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.FormInstituto.resources
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\Entidades.dll
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\Negocio.dll
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\Datos.dll
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\Entidades.pdb
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\Negocio.pdb
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\bin\Debug\Datos.pdb
+C:\Users\joaco\OneDrive\Escritorio\VS2023\InstitutoIEFI\InstitutoIEFI\obj\Debug\InstitutoIEFI.csproj.CopyComplete

@@ -101,5 +101,66 @@ namespace Datos
 			}
 			return ds;
 		}
+
+		public List<Alumno> ObtenerAlumno()
+		{
+
+			List<Alumno> lista = new List<Alumno>();
+
+
+			string OrdenEjecucion = "Select DNI, NombreApellido , Fecha_Nac , Email, Analitico from Alumno";
+
+
+
+
+			SqlCommand cmd = new SqlCommand(OrdenEjecucion, conexion);
+
+			SqlDataReader dataReader;
+
+			try
+			{
+				Abrirconexion();
+
+				dataReader = cmd.ExecuteReader();
+
+				while (dataReader.Read())
+				{
+
+
+					string nombre = dataReader.GetString(1);
+					int dni = dataReader.GetInt32(0);
+					string nombredni = $"{nombre} , {dni}";
+
+
+
+					Alumno alumno = new Alumno();
+
+					alumno.dni = dataReader.GetInt32(0);
+
+					//producto.Categoria = dataReader.GetString(1);
+
+					//producto.NombreProducto = dataReader.GetString(2);
+
+					//producto.PrecioProducto = dataReader.GetInt32(3);
+
+					alumno.nombreapellido = nombredni;
+
+					lista.Add(alumno);
+				}
+			}
+			catch (Exception e)
+			{
+
+				throw new Exception("Error al obtener la lista de alumnos", e);
+			}
+
+			finally
+			{
+				Cerrarconexion();
+				cmd.Dispose();
+			}
+
+			return lista;
+		}
 	}
 }

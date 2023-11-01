@@ -76,6 +76,33 @@ namespace Datos
 			//return ds;
 		}
 
+		public DataSet Unir()
+		{
+
+			string orden = $"select c.Id, c.Nota, c.Condicion, a.NombreApellido, a.Fecha_Nac, a.Email, a.Analitico, m.Nombre, m.Año_Cursado, m.Dia_Cursado , m.Nombre_Carrera from Cursa as c inner join Alumno as a on c.DNI_Alumno=a.DNI inner join Materia as m on c.Codigo_Materia=m.Codigo";
+
+			SqlCommand cmd = new SqlCommand(orden, conexion);
+			DataSet ds = new DataSet();
+			SqlDataAdapter da = new SqlDataAdapter();
+			try
+			{
+				Abrirconexion();
+				cmd.ExecuteNonQuery();
+				da.SelectCommand = cmd;
+				da.Fill(ds);
+			}
+			catch (Exception e)
+			{
+				throw new Exception("Error al buscar los detalles del cursado", e);
+			}
+			finally
+			{
+				Cerrarconexion();
+				cmd.Dispose();
+			}
+			return ds;
+		}
+
 		public DataSet ListaCursaEliminar(string id)
 		{
 			string orden = $"delete from Cursa where Id = {id};";
