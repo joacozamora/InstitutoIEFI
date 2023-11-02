@@ -38,7 +38,7 @@ namespace InstitutoIEFI
 			dgvCursa.ColumnCount = 5;
 			dgvCursa.Columns[0].HeaderText = "Id";
 			dgvCursa.Columns[1].HeaderText = "DNI_Alumno";
-			dgvCursa.Columns[2].HeaderText = "Nombre_Materia";
+			dgvCursa.Columns[2].HeaderText = "Codigo";
 			dgvCursa.Columns[3].HeaderText = "Nota";
 			dgvCursa.Columns[4].HeaderText = "Condicion";
 
@@ -54,6 +54,9 @@ namespace InstitutoIEFI
 			LlenarDGVCursa();
 			LlenarCombos();
 			LlenarCombos2();
+			btn_ModificarMateria.Visible = false;
+			btn_ModificarAlumno.Visible = false;
+			btn_ModificarCursado.Visible = false;
 			dgvCursa.CellClick += new DataGridViewCellEventHandler(dgvCursa_CellClick);
 			dgvAlumno.CellClick += new DataGridViewCellEventHandler(dgvAlumno_CellClick);
 			dgvMateria.CellClick += new DataGridViewCellEventHandler(dgvMateria_CellClick);
@@ -80,7 +83,7 @@ namespace InstitutoIEFI
 
 			if (ds.Tables[0].Rows.Count > 0)
 			{
-				// Ya existe un alumno con este DNI, muestra un mensaje de error o toma la acción necesaria.
+				
 				MessageBox.Show("Ya existe un alumno con este DNI.");
 			}
 			else
@@ -103,62 +106,59 @@ namespace InstitutoIEFI
 					}
 				}
 			}
-			/*if (validar == true)
-			{
-				Txb_a_ObjAlumno();
-				nGrabados = objNegAlumno.abmAlumno("Alta", objEntAlumno);
-				if (nGrabados == -1)
-				{
-					MessageBox.Show("No se logró agregar el Alumno al sistema");
-				}
-				else
-				{
-					MessageBox.Show("Se logró agregar al Alumno con éxito");
-					LlenarDGVAlumno();
-					LimpiarAlumno();
-					LlenarCombos();
-					tabControl1.SelectTab(tabAlumno);
-				}
-			}*/
+			
 		}
 
 		private void btn_CargarMateria_Click(object sender, EventArgs e)
 		{
 			bool validar = ValidacionCamposMateria();
 			int nGrabados = -1;
-			if (validar == true)
+			string cod = txb_CodMat.Text;
+
+			DataSet ds = objNegMateria.listadoMateria(cod);
+
+			if (ds.Tables[0].Rows.Count > 0)
 			{
-				Txb_a_ObjMateria();
-				nGrabados = objNegMateria.abmMateria("Alta", objEntMateria);
-				if (nGrabados == -1)
+				
+				MessageBox.Show("Ya existe una materia con este Codigo.");
+			}
+			else
+			{
+				if (validar == true)
 				{
-					MessageBox.Show("No se logró agregar la Materia al sistema");
-				}
-				else
-				{
-					MessageBox.Show("Se logró agregar la Materia con éxito");
-					LlenarDGVMateria();
-					LimpiarMateria();
-					LlenarCombos2();
-					tabControl1.SelectTab(tabMateria);
+					Txb_a_ObjMateria();
+					nGrabados = objNegMateria.abmMateria("Alta", objEntMateria);
+					if (nGrabados == -1)
+					{
+						MessageBox.Show("No se logró agregar la Materia al sistema");
+					}
+					else
+					{
+						MessageBox.Show("Se logró agregar la Materia con éxito");
+						LlenarDGVMateria();
+						LimpiarMateria();
+						LlenarCombos2();
+						tabControl1.SelectTab(tabMateria);
+					}
 				}
 			}
+				
 		}
 
 		private void btn_CargarCursado_Click(object sender, EventArgs e)
 		{
 			bool validar = ValidacionCamposCursa();
 			int nGrabados = -1;
-			int dniAlumno = int.Parse(cb_CursaAlumno.SelectedValue.ToString());
-			int codigoMateria = int.Parse(cb_CursaMateria.SelectedValue.ToString());
-			bool existeCursa = objNegCursa.ExisteCursa(dniAlumno, codigoMateria);
-			//DataSet ds = objNegCursa.listadoCursa(dniAlumno.ToString(), codigoMateria.ToString());
-			if (existeCursa)
-			{
-				MessageBox.Show("Este alumno ya tiene su nota final cargada.");
-			}
-			else
-			{
+			//int dniAlumno = int.Parse(cb_CursaAlumno.SelectedItem.ToString());
+			//int codigoMateria = int.Parse(cb_CursaMateria.SelectedItem.ToString());
+			//bool existeCursa = objNegCursa.ExisteCursa(dniAlumno, codigoMateria);
+			////DataSet ds = objNegCursa.listadoCursa(dniAlumno.ToString(), codigoMateria.ToString());
+			//if (existeCursa)
+			//{
+			//	MessageBox.Show("Este alumno ya tiene su nota final cargada.");
+			//}
+			//else
+			//{
 				if (validar == true)
 				{
 					Txb_a_ObjCursa();
@@ -176,7 +176,7 @@ namespace InstitutoIEFI
 
 					}
 				}
-			}
+			
 
 		}
 
@@ -233,8 +233,7 @@ namespace InstitutoIEFI
 			txb_dni.Text = string.Empty;
 			txb_email.Text = string.Empty;
 			FechaNacAlumno.Value = DateTime.Today;
-			/*txtBuscarProducto.Clear();
-			txtEliminarProducto.Clear();*/
+			
 		}
 
 		private void LimpiarMateria()
@@ -243,8 +242,7 @@ namespace InstitutoIEFI
 			txb_NombreMateria.Text = string.Empty;
 			txb_DiaCursado.Text = string.Empty;
 			txb_NombreCarrera.Text = string.Empty;
-			/*txtBuscarProducto.Clear();
-			txtEliminarProducto.Clear();*/
+			
 		}
 
 		private void LimpiarCursa()
@@ -253,8 +251,7 @@ namespace InstitutoIEFI
 			cb_CursaAlumno.SelectedIndex = 0;
 			cb_CursaMateria.SelectedIndex = 0;
 			cb_Condicion.SelectedIndex = 0;
-			//txtBuscarCaja.Clear();
-			//txtEliminarCaja.Clear();
+			
 		}
 		#endregion
 
@@ -676,7 +673,7 @@ namespace InstitutoIEFI
 
 		private void Txb_a_ObjCursa()
 		{
-
+			//objEntCursa.id = int.Parse(txb_id.Text);
 			objEntCursa.nota = int.Parse(txb_Nota.Text);
 			objEntCursa.condicion = cb_Condicion.Text.ToString();
 			objEntCursa.dni_alumno = int.Parse(cb_CursaAlumno.SelectedValue.ToString());
@@ -692,14 +689,14 @@ namespace InstitutoIEFI
 		private void LlenarCombos()
 		{
 			cb_CursaAlumno.DataSource = objNegAlumno.ObtenerAlumno();
-			cb_CursaAlumno.DisplayMember = "NombreApellido";
+			cb_CursaAlumno.DisplayMember = "DNI";
 			cb_CursaAlumno.ValueMember = "DNI";
 		}
 
 		private void LlenarCombos2()
 		{
 			cb_CursaMateria.DataSource = objNegMateria.ObtenerMateria();
-			cb_CursaMateria.DisplayMember = "Nombre";
+			cb_CursaMateria.DisplayMember = "Codigo";
 			cb_CursaMateria.ValueMember = "Id";
 		}
 
@@ -725,9 +722,8 @@ namespace InstitutoIEFI
 					MessageBox.Show("el Alumno fue modificada con éxito");
 					LimpiarAlumno();
 					LlenarDGVAlumno();
-					btn_ModificarAlumno.Visible = false;
-					btn_CargarAlumno.Visible = true;
-					//btnCancelarCaja.Visible = false;
+					LlenarCombos();
+					
 				}
 				else
 				{
@@ -752,9 +748,8 @@ namespace InstitutoIEFI
 					MessageBox.Show("La materia fue modificada con éxito");
 					LimpiarMateria();
 					LlenarDGVMateria();
-					btn_ModificarMateria.Visible = false;
-					btn_CargarMateria.Visible = true;
-					//btnCancelarCaja.Visible = false;
+					LlenarCombos2();
+					
 				}
 				else
 				{
@@ -773,16 +768,14 @@ namespace InstitutoIEFI
 				nResultado = objNegCursa.abmCursa("Modificar", objEntCursa);
 				if (nResultado != -1)
 				{
-					MessageBox.Show("el Caja fue modificada con éxito");
+					MessageBox.Show("El cursado del alumno fue modificado con éxito");
 					LimpiarCursa();
 					LlenarDGVCursa();
-					btn_ModificarCursado.Visible = false;
-					//btn_CargaCursa.Visible = true;
-					//btnCancelarCaja.Visible = false;
+					
 				}
 				else
 				{
-					MessageBox.Show("Se produjo un error al intentar modificar la Caja");
+					MessageBox.Show("Se produjo un error al intentar modificar el cursado");
 				}
 			}
 		}
@@ -792,11 +785,52 @@ namespace InstitutoIEFI
 		{
 			if (e.RowIndex >= 0)
 			{
-				string nota = dgvCursa.Rows[e.RowIndex].Cells[3].Value.ToString();
+				txb_id.Text = dgvCursa.Rows[e.RowIndex].Cells[0].Value.ToString();
+				object dniValue = dgvCursa.Rows[e.RowIndex].Cells[1].Value;
+				object codigoValue = dgvCursa.Rows[e.RowIndex].Cells[2].Value;
+				object notaValue = dgvCursa.Rows[e.RowIndex].Cells[3].Value;
 				
-				txb_Nota.Text = nota;
+				int index = cb_CursaAlumno.FindStringExact(dniValue.ToString());
+				int indexa = cb_CursaMateria.FindStringExact(codigoValue.ToString());
+				
+				txb_Nota.Text = notaValue.ToString();
+
+				
+				if (index != -1)
+				{
+					cb_CursaAlumno.SelectedIndex = index;
+				}
+				if (indexa != -1)
+				{
+					cb_CursaMateria.SelectedIndex = indexa;
+				}
+				
+				string valorCelda = dgvCursa.Rows[e.RowIndex].Cells[4].Value.ToString(); // Obtiene el valor de la cuarta columna
+
+				// Busca y selecciona el valor en el ComboBox cb_Condicion
+				if (cb_Condicion.Items.Contains(valorCelda))
+				{
+					cb_Condicion.SelectedItem = valorCelda;
+				}
+				btn_ModificarCursado.Visible = true;
+
 			}
+				/*DataGridViewRow fila = dgvCursa.Rows[e.RowIndex];
+				string valorDNI = fila.Cells[1].Value.ToString();
+				string valorMateria = fila.Cells[2].Value.ToString();*/
+
+				// Establece el valor seleccionado en el ComboBox del alumno.
+				//cb_CursaAlumno.SelectedValue = fila.Cells[1].Value.ToString();
+
+				// Establece el valor seleccionado en el ComboBox de la materia.
+				//cb_CursaMateria.SelectedValue = valorMateria;
+			
+			/*DataGridViewRow fila = dgvCursa.Rows[e.RowIndex];
+			cb_CursaAlumno.SelectedItem = fila.Cells[1].Value;
+			cb_CursaMateria.SelectedItem = fila.Cells[1].Value;
+			*/
 		}
+		
 
 		private void dgvAlumno_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
@@ -807,7 +841,8 @@ namespace InstitutoIEFI
 				txb_NomApAlumno.Text = fila.Cells[1].Value.ToString(); 
 				FechaNacAlumno.Value = Convert.ToDateTime(fila.Cells[2].Value); 
 				txb_email.Text = fila.Cells[3].Value.ToString(); 
-				chbx_analitico.Checked = Convert.ToBoolean(fila.Cells[4].Value); 
+				chbx_analitico.Checked = Convert.ToBoolean(fila.Cells[4].Value);
+				btn_ModificarAlumno.Visible = true;
 			}
 		}
 
@@ -823,6 +858,150 @@ namespace InstitutoIEFI
 				num_AñoMateria.Text = row.Cells[2].Value.ToString();
 				txb_DiaCursado.Text = row.Cells[3].Value.ToString();
 				txb_NombreCarrera.Text = row.Cells[4].Value.ToString();
+				btn_ModificarMateria.Visible = true;
+			}
+		}
+
+		private void EliminarAlumno_Click(object sender, EventArgs e)
+		{
+			if (true)
+			{
+
+				DgEliminarAlumnoDNI();
+
+				LlenarDGVAlumno();
+
+				MessageBox.Show("Se elimino el alumno");
+			}
+		}
+
+		public void DgEliminarAlumnoDNI()
+		{
+			DataRow DNIAEliminar = null;
+			DataSet ds = objNegAlumno.listadoAlumno("Todos");
+			DateTime fechaNacimiento = DateTime.MinValue;
+			string dniAlumno = txb_dni.Text;
+
+			foreach (DataRow dr in ds.Tables[0].Rows)
+			{
+				if (dr[0].ToString() == dniAlumno)
+				{
+					DNIAEliminar = dr;
+					break;
+				}
+			}
+
+			if (DNIAEliminar != null)
+			{
+				int dni = int.Parse(DNIAEliminar[0].ToString());
+
+				Alumno producto = new Alumno(dni, null, fechaNacimiento, null, false); // Ajusta los valores adecuados en el constructor de Productos
+
+				int resultado = objNegAlumno.abmAlumno("Borrar", producto);
+
+				if (resultado > 0)
+				{
+					MessageBox.Show("Alumno eliminado correctamente");
+				}
+				else
+				{
+					MessageBox.Show("No se pudo eliminar el Alumno");
+				}
+			}
+			else
+			{
+				MessageBox.Show("El Alumno no se encontró en la lista");
+			}
+		}
+
+
+		private void btn_EliminarMateria_Click(object sender, EventArgs e)
+			{
+				if (true)
+				{
+
+					DgEliminarMateriaId();
+
+					LlenarDGVMateria();
+
+					MessageBox.Show("Se eliminaron los detalles del Movimiento");
+				}
+			}
+		public void DgEliminarMateriaId()
+		{
+			DataRow codAEliminar = null;
+			DataSet ds = objNegMateria.listadoMateria("Todos");
+			DateTime fechaNacimiento = DateTime.MinValue;
+			string codmat = txb_CodMat.Text;
+
+			foreach (DataRow dr in ds.Tables[0].Rows)
+			{
+				if (dr[0].ToString() == codmat)
+				{
+					codAEliminar = dr;
+					break;
+				}
+			}
+
+			if (codAEliminar != null)
+			{
+				int cod = int.Parse(codAEliminar[0].ToString());
+
+				Materia materia = new Materia(cod, null, 0, null, null); // Ajusta los valores adecuados en el constructor de Productos
+
+				int resultado = objNegMateria.abmMateria("Borrar", materia);
+
+				if (resultado > 0)
+				{
+					MessageBox.Show("Materia eliminado correctamente");
+				}
+				else
+				{
+					MessageBox.Show("No se pudo eliminar  Materia");
+				}
+			}
+			else
+			{
+				MessageBox.Show("La materia no se encontró en la lista");
+			}
+		}
+
+		private void btn_EliminarCursa_Click(object sender, EventArgs e)
+		{
+			DataRow DNIAEliminar = null;
+			DataSet ds = objNegCursa.listadoCursa("Todos");
+			DateTime fechaNacimiento = DateTime.MinValue;
+			string dniAlumno = cb_CursaAlumno.SelectedValue.ToString();
+
+			foreach (DataRow dr in ds.Tables[0].Rows)
+			{
+				if (dr[1].ToString() == dniAlumno)
+				{
+					DNIAEliminar = dr;
+					break;
+				}
+			}
+
+			if (DNIAEliminar != null)
+			{
+				int dni = int.Parse(DNIAEliminar[1].ToString());
+
+				Cursa cursa = new Cursa(0,dni, 0, 0, null); // Ajusta los valores adecuados en el constructor de Productos
+
+				int resultado = objNegCursa.abmCursa("Borrar", cursa);
+
+				if (resultado > 0)
+				{
+					MessageBox.Show("Cursa eliminado correctamente");
+				}
+				else
+				{
+					MessageBox.Show("No se pudo eliminar el Cursa");
+				}
+			}
+			else
+			{
+				MessageBox.Show("El Cursa no se encontró en la lista");
 			}
 		}
 	}

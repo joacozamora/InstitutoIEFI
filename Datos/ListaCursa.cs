@@ -22,8 +22,8 @@ namespace Datos
 			if (accion == "Modificar")
 				orden = $"update Cursa set DNI_Alumno = '{objCursa.dni_alumno}' where Id = {objCursa.id};  update Cursa set Codigo_Materia = '{objCursa.codigo_materia}' where Id = {objCursa.id}; update Cursa set Nota = '{objCursa.nota}' where Id = {objCursa.id}; update Cursa set Condicion = '{objCursa.condicion}' where Id = {objCursa.id}; ";
 
-			//if (accion == "Baja")
-			//    orden = $"delete from Caja where Id = {objCaja.Id}";
+			if (accion == "Borrar")
+			    orden = $"delete from Cursa where DNI_Alumno = {objCursa.dni_alumno}";
 
 
 			SqlCommand cmd = new SqlCommand(orden, conexion);
@@ -46,10 +46,7 @@ namespace Datos
 
 		public bool ExisteCursa(int dni, int codigoMateria)
 		{
-			// Aquí debes realizar una consulta SQL para verificar si ya existe la combinación
-			// de DNI y materia en la tabla Cursa.
-
-			// Por ejemplo:
+			
 			string consulta = "SELECT COUNT(*) FROM Cursa WHERE DNI_Alumno = @dni AND Codigo_Materia = @codigoMateria";
 
 			using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -242,7 +239,7 @@ namespace Datos
 		public DataSet Unir()
 		{
 
-			string orden = $"select c.Id, a.DNI, m.Nombre, c.Nota, c.Condicion from Cursa as c inner join Alumno as a on c.DNI_Alumno=a.DNI inner join Materia as m on c.Codigo_Materia=m.Codigo\r\n";
+			string orden = $"select c.Id, a.DNI, m.Codigo, c.Nota, c.Condicion from Cursa as c inner join Alumno as a on c.DNI_Alumno=a.DNI inner join Materia as m on c.Codigo_Materia=m.Codigo\r\n";
 
 			SqlCommand cmd = new SqlCommand(orden, conexion);
 			DataSet ds = new DataSet();
